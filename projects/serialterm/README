@@ -1,4 +1,4 @@
-Compile: gcc -Wall -pthread -I../lib/ ../lib/rs232.c ../lib/serial.c main.c -oserialterm
+Compile: gcc -Wall -pthread -I../../lib/ ../../lib/rs232.c ../../lib/serial.c main.c -oserialterm
 Run: ./serialterm 16 115200
 16 - /dev/ttyUSB0
 17 - /dev/ttyUSB1
