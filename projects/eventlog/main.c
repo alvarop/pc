@@ -49,7 +49,7 @@ int main( int argc, char *argv[] )
   }
 
   f_log = fopen("log.csv", "a");
-  fprintf(f_log, "%ld,Start Logging\n", time(NULL));
+  fprintf(f_log, "%ld,Start Logging,,\n", time(NULL));
   fclose(f_log);
 
   rc = pthread_create( &serial_thread, NULL, serial_read_thread, NULL );
