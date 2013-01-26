@@ -1,0 +1,11 @@
+[Unit]
+Description=Custom Event Logger
+ConditionPathExists=|/home/root/code/pc/projects/eventlog/
+ConditionPathExists=|/dev/ttyO1
+ 
+[Service]
+WorkingDirectory=/home/root/code/pc/projects/eventlog/
+ExecStart=/home/root/code/pc/projects/eventlog/eventlog 21 115200
+ 
+[Install]
+WantedBy=multi-user.target
