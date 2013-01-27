@@ -4,3 +4,6 @@ Compile: gcc -Wall -std=gnu99 -pthread -I../../lib/ ../../lib/rs232.c ../../lib/
 Run: ./eventlog 16 115200
 16 - /dev/ttyUSB0
 17 - /dev/ttyUSB1
+21 - /dev/ttyO1
+
+eventlog.service must be in /lib/systemd/system/eventlog.service for it to autostart on beaglebone
