@@ -38,8 +38,9 @@ uint8_t serial_open( int32_t port_number, int32_t baud_rate,
   }
 
   // Set a callback function for receiving packets
-  serial_read_callback = callback;
-
+  if( callback != NULL) {
+    serial_read_callback = callback;
+  }
   return 0;
 }
 

@@ -14,7 +14,6 @@
 #include "serial.h"
 #include "main.h"
 
-void send_serial_message( uint8_t* packet_buffer, int16_t buffer_size );
 pthread_t serial_thread;
 
 #define PRINT_TIME time(&raw_time); \
