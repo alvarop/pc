@@ -1,6 +1,5 @@
 Send messages over uart/usb with simple command
 
-Compile: gcc -Wall -std=gnu99 -I../../lib/ ../../lib/rs232.c ../../lib/serial.c main.c -oswrite
 Run: ./swrite 16 115200 a0 f3 05 ....
 16 - /dev/ttyUSB0
 17 - /dev/ttyUSB1

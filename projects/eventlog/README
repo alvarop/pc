@@ -1,6 +1,5 @@
 Get messages over uart/usb (which is acting as a bridge for the cc2500 radio) and log the time and data.
 
-Compile: gcc -Wall -std=gnu99 -pthread -I../../lib/ ../../lib/rs232.c ../../lib/serial.c main.c -oeventlog
 Run: ./eventlog 16 115200
 16 - /dev/ttyUSB0
 17 - /dev/ttyUSB1
