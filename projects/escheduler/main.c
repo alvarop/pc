@@ -16,9 +16,12 @@
 #include "commands.h"
 
 event_t events[] = {
-  {"test",  10, 31, DAY_SAT},
-  {"sayhi", 10, 32, DAY_ALL},
-  {"sayhi", 10, 33, DAY_TUE},
+  {"bedon",   5,  44, (DAY_MON | DAY_WED)},
+  {"rackon",  5,  45, (DAY_MON | DAY_WED)},
+  {"alloff",  6,  30, DAY_ALL},
+  {"bedon",   7,  24, (DAY_TUE | DAY_THU | DAY_FRI | DAY_SAT | DAY_SUN)},
+  {"rackon",  7,  25, (DAY_TUE | DAY_THU | DAY_FRI | DAY_SAT | DAY_SUN)},
+  {"alloff",  8,  00, DAY_ALL},
   {NULL, 0, 0, 0}};
 
 #define ALARM_INTERVAL (1)
