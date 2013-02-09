@@ -4,7 +4,7 @@ ConditionPathExists=|/home/root/code/pc/projects/escheduler
  
 [Service]
 WorkingDirectory=/home/root/code/pc/projects/escheduler
-ExecStart=/home/root/code/pc/projects/escheduler.stable >> escheduler.log
+ExecStart=/home/root/code/pc/projects/escheduler/escheduler.stable 
  
 [Install]
 WantedBy=multi-user.target
