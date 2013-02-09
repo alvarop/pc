@@ -1,0 +1,10 @@
+[Unit]
+Description=Custom Event Scheduler
+ConditionPathExists=|/home/root/code/pc/projects/escheduler
+ 
+[Service]
+WorkingDirectory=/home/root/code/pc/projects/escheduler
+ExecStart=/home/root/code/pc/projects/escheduler.stable >> escheduler.log
+ 
+[Install]
+WantedBy=multi-user.target
