@@ -10,9 +10,18 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <signal.h>
+#include <time.h>
+
+#include "timestuff.h"
+#include "commands.h"
+
+event_t events[] = {
+  {"test",  10, 31, DAY_SAT},
+  {"sayhi", 10, 32, DAY_ALL},
+  {"sayhi", 10, 33, DAY_TUE},
+  {NULL, 0, 0, 0}};
 
 #define ALARM_INTERVAL (1)
-
 #define ALARM_FLAG (1)
 uint32_t flags = 0;
 
@@ -36,15 +45,44 @@ int main( int argc, char *argv[] )
   (void) signal(SIGINT, sigint_handler);
   (void) signal(SIGALRM, sigalrm_handler);
   
-  printf("escheduler started\n");
-   
+  tm_t * thetime;
+  time_t raw_time, event_time;
+  
+  time(&raw_time);
+  thetime = localtime(&raw_time);
+  
+  printf("escheduler started at %ld -- %02u/%02u/%04u %02u:%02u:%02u\n", time(NULL), thetime->tm_mday, thetime->tm_mon+1, thetime->tm_year+1900, thetime->tm_hour, thetime->tm_min, thetime->tm_sec);
+
+
   alarm(ALARM_INTERVAL);
   
   while(1) {
     sigsuspend (&oldmask); // Wait for a SIGALRM
     
     if(flags & ALARM_FLAG) {
-      printf("Alarm received!\n");
+      
+  
+      event_t* event_ptr = events;
+      while(event_ptr->command != NULL) {
+        
+        time(&raw_time);
+        thetime = localtime(&raw_time);
+                
+        // Does event happen today?
+        if(event_ptr->day & (1 << thetime->tm_wday)) {
+          clear_hms(thetime);
+          thetime->tm_min = event_ptr->min;
+          thetime->tm_hour = event_ptr->hour;
+          event_time = mktime(thetime);
+
+          if(event_time == raw_time) {
+            run_event(event_ptr);
+          }
+        }
+        
+        event_ptr++;
+      }      
+      
       alarm(ALARM_INTERVAL);
     }
     
@@ -55,9 +93,5 @@ int main( int argc, char *argv[] )
   
   return 0;
 }
-
-
-
-
 
 
